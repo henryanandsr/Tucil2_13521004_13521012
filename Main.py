@@ -1,6 +1,16 @@
 import src
 import random
+import time
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
 
+#Problem
+# 1. Pencarian antara dua sisi berbeda masih brute force
+# 2. Mencari jumlah titik ganjil masih error
+# 3. Menemukan titik
+# 4. Jumlah aksi yang dilakukan (ini bisa dilakuin klo udh bener di bagian nomer 1)
+# 5. Plotting (kurang kalau beda2 dimensi)
+# 6. Dimensi berbeda (sebenernya yang sekarang ini bisa cmn gabisa banyak2 karena brute force)
 dimension = int(input("Dimensi: "))
 numberOfPoints = int(input("Banyaknya Titik: "))
 
@@ -10,6 +20,19 @@ for i in range(numberOfPoints):
     for j in range(dimension):
         arrayPoint[i][j] = random.randint(0, 100)
 
-src.printAllPoint(arrayPoint)
+# src.printAllPoint(arrayPoint)
 #yang bawah belum bener, baru basic
-print(src.calculateDistance(arrayPoint[0],arrayPoint[1]))
+
+#pecah ke dua bagian
+startTime = time.time()
+print(src.findClosestPair(arrayPoint,numberOfPoints,dimension))
+print("Waktu eksekusi : " + str(time.time()-startTime))
+
+#visualisasi 
+fig = plt.figure(figsize=(100,100))
+tempdim = str(dimension)+"d"
+ax = fig.add_subplot(111, projection=tempdim)
+for i in range(len(arrayPoint)):
+    ax.scatter(arrayPoint[i][0],arrayPoint[i][1],arrayPoint[i][2])
+    #https://likegeeks.com/3d-plotting-in-python/
+plt.show()

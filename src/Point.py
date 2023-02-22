@@ -1,5 +1,5 @@
 import math
-
+import sys
 def calculateDistance(point1, point2):
     result=float(0)
     for i in range (len(point1)):
@@ -9,3 +9,34 @@ def calculateDistance(point1, point2):
 def printAllPoint(arrayPoint):
     for i in range(len(arrayPoint)):
         print(arrayPoint[i])
+
+
+def findClosestPair(arr, n, dimensi):
+    if (n==2):
+        d = calculateDistance(arr[0],arr[1])
+    else:
+        mid = n//2
+        # print(mid)
+        arr1 = arr[:mid]
+        # print(arr1)
+        arr2 = arr[mid:]
+        # print(arr2)
+        d1 = findClosestPair(arr1,mid,dimensi)
+        d2 = findClosestPair(arr2,mid,dimensi)
+        d = min(d1,d2)
+
+        #cari titik yang paling minimum yang dibedakan dari dua sisi
+        #sementara mari brute force dl ~
+        minDistOp = 999
+        for i in range (len(arr1)):
+            for j in range (len(arr2)):
+                temp = calculateDistance(arr1[i],arr2[j])
+                if (minDistOp>temp):
+                    minDistOp = temp
+    if (n==2):
+        return d
+    else :
+        if (minDistOp<d):
+            return minDistOp
+        else:
+            return d

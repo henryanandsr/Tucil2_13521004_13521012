@@ -18,7 +18,7 @@ result=[[0 for j in range(dimension)] for i in range (2)]
 arrayPoint = [[0 for j in range(dimension)] for i in range (numberOfPoints)]
 for i in range(numberOfPoints):
     for j in range(dimension):
-        arrayPoint[i][j] = random.randint(0, 100)
+        arrayPoint[i][j] = random.randint(0, 1000)
 
 # src.printAllPoint(arrayPoint)
 #yang bawah belum bener, baru basic
@@ -32,10 +32,17 @@ print("Waktu eksekusi : " + str(time.time()-startTime))
 
 #visualisasi 
 fig = plt.figure(figsize=(100,100))
-tempdim = str(dimension)+"d"
-ax = fig.add_subplot(111, projection=tempdim)
-for i in range(len(arrayPoint)):
-    ax.scatter(arrayPoint[i][0],arrayPoint[i][1],arrayPoint[i][2],c='black',marker='o')
-for i in range(len(result)):    
-    ax.scatter(result[i][0],result[i][1],result[i][2],c='red',marker='o')
-plt.show()
+if dimension==3:
+    tempdim = str(dimension)+"d"
+    ax = fig.add_subplot(111, projection=tempdim)
+    for i in range(len(arrayPoint)):
+        ax.scatter(arrayPoint[i][0],arrayPoint[i][1],arrayPoint[i][2],c='black',marker='o')
+    for i in range(len(result)):    
+        ax.scatter(result[i][0],result[i][1],result[i][2],c='red',marker='o')
+    plt.show()
+elif dimension==2:
+    for i in range(len(arrayPoint)):
+        plt.scatter(arrayPoint[i][0],arrayPoint[i][1],color = 'black')
+    for i in range(len(result)):
+        plt.scatter(result[i][0],result[i][1],color = 'red')
+    plt.show()

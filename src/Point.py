@@ -65,3 +65,17 @@ def findClosestPairDnC(arr, n, dimensi):
                 
         
 # def findClosestPairDnC
+def sortArrOfPoint(arr):
+    for i in range(len(arr)):
+        tempx = arr[i][0]
+        for j in range(i,len(arr)):
+            if (tempx>=arr[j][0]):
+                tempx = arr[j][0]
+                idxfound = j
+        temp = arr[i]
+        arr[i] = arr[idxfound]
+        arr[idxfound] = temp
+    return arr
+
+# tempo = [[3,1],[4,1],[2,1],[0,1],[6,1],[-1,2],[2,1]]
+# print(sortArrOfPoint(tempo))

@@ -20,12 +20,13 @@ for i in range(numberOfPoints):
     for j in range(dimension):
         arrayPoint[i][j] = random.randint(0, 1000)
 
+arrayPoint=src.sortArrOfPoint(arrayPoint)
 # src.printAllPoint(arrayPoint)
 #yang bawah belum bener, baru basic
 
 #pecah ke dua bagian
 startTime = time.time()
-src.findClosestPairBruteforce(arrayPoint,dimension,result)
+src.findClosestPairDnC(arrayPoint, numberOfPoints, dimension, result)
 src.printAllPoint(result)
 print("Jarak "+str(src.calculateDistance(result[0],result[1])))
 print("Waktu eksekusi : " + str(time.time()-startTime))

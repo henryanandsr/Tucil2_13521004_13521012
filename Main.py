@@ -14,7 +14,6 @@ from mpl_toolkits.mplot3d import Axes3D
 
 dimension = int(input("Dimensi: "))
 numberOfPoints = int(input("Banyaknya Titik: "))
-result=[[0 for j in range(dimension)] for i in range (2)]
 arrayPoint = [[0 for j in range(dimension)] for i in range (numberOfPoints)]
 for i in range(numberOfPoints):
     for j in range(dimension):
@@ -22,13 +21,16 @@ for i in range(numberOfPoints):
 
 arrayPoint=src.sortArrOfPoint(arrayPoint)
 # src.printAllPoint(arrayPoint)
+# src.printAllPoint(arrayPoint)
 #yang bawah belum bener, baru basic
 
 #pecah ke dua bagian
 startTime = time.time()
-src.findClosestPairDnC(arrayPoint, numberOfPoints, dimension, result)
-src.printAllPoint(result)
-print("Jarak "+str(src.calculateDistance(result[0],result[1])))
+result = src.findClosestPairDnC(arrayPoint, numberOfPoints, dimension)
+# src.printAllPoint(result)
+print(src.calculateDistance(src.findClosestPairDnC(arrayPoint, numberOfPoints, dimension)[1],src.findClosestPairDnC(arrayPoint, numberOfPoints, dimension)[2]))
+print("Jarak "+str(src.findClosestPairDnC(arrayPoint, numberOfPoints, dimension)[0]))
+print("Jarak dg BF : " + str(src.findClosestPairBF(arrayPoint,numberOfPoints,dimension)))
 print("Waktu eksekusi : " + str(time.time()-startTime))
 
 #visualisasi 
@@ -38,12 +40,19 @@ if dimension==3:
     ax = fig.add_subplot(111, projection=tempdim)
     for i in range(len(arrayPoint)):
         ax.scatter(arrayPoint[i][0],arrayPoint[i][1],arrayPoint[i][2],c='black',marker='o')
-    for i in range(len(result)):    
+    for i in range(1,len(result)):    
         ax.scatter(result[i][0],result[i][1],result[i][2],c='red',marker='o')
     plt.show()
 elif dimension==2:
     for i in range(len(arrayPoint)):
         plt.scatter(arrayPoint[i][0],arrayPoint[i][1],color = 'black')
-    for i in range(len(result)):
+    for i in range(1,len(result)):
         plt.scatter(result[i][0],result[i][1],color = 'red')
+    x = []
+    y = []
+    for i in range(len(arrayPoint)):
+        x.append(arrayPoint[i][0])
+        y.append(arrayPoint[i][1])
+    for xy in zip(x,y):
+        plt.annotate('(%.2f,%.2f)'% xy, xy = xy)
     plt.show()

@@ -11,7 +11,19 @@ def printAllPoint(arrayPoint):
         print(arrayPoint[i])
 
 
-def findClosestPair(arr, n, dimensi):
+def findClosestPairBruteforce(arrayPoint, dimensi, result):
+    temp=float(calculateDistance(arrayPoint[0], arrayPoint[1]))
+    result[0]=arrayPoint[0]
+    result[1]=arrayPoint[1]
+    for i in range(len(arrayPoint)):
+        for j in range(len(arrayPoint)):
+            if i!=j:
+                if temp>calculateDistance(arrayPoint[i], arrayPoint[j]):
+                    temp=calculateDistance(arrayPoint[i], arrayPoint[j])
+                    result[0]=arrayPoint[i]
+                    result[1]=arrayPoint[j]
+
+def findClosestPairDnC(arr, n, dimensi):
     if (n==2):
         d = calculateDistance(arr[0],arr[1])
     else:
@@ -40,3 +52,6 @@ def findClosestPair(arr, n, dimensi):
             return minDistOp
         else:
             return d
+                
+        
+# def findClosestPairDnC

@@ -13,19 +13,20 @@ from mpl_toolkits.mplot3d import Axes3D
 # 6. Dimensi berbeda (sebenernya yang sekarang ini bisa cmn gabisa banyak2 karena brute force)
 dimension = int(input("Dimensi: "))
 numberOfPoints = int(input("Banyaknya Titik: "))
-
+result=[[0 for j in range(dimension)] for i in range (2)]
 arrayPoint = [[0 for j in range(dimension)] for i in range (numberOfPoints)]
-
 for i in range(numberOfPoints):
     for j in range(dimension):
-        arrayPoint[i][j] = random.randint(0, 100)
+        arrayPoint[i][j] = random.randint(0, 10)
 
 # src.printAllPoint(arrayPoint)
 #yang bawah belum bener, baru basic
 
 #pecah ke dua bagian
 startTime = time.time()
-print(src.findClosestPair(arrayPoint,numberOfPoints,dimension))
+src.findClosestPairBruteforce(arrayPoint,dimension,result)
+src.printAllPoint(result)
+print("Jarak "+str(src.calculateDistance(result[0],result[1])))
 print("Waktu eksekusi : " + str(time.time()-startTime))
 
 #visualisasi 
@@ -33,6 +34,7 @@ fig = plt.figure(figsize=(100,100))
 tempdim = str(dimension)+"d"
 ax = fig.add_subplot(111, projection=tempdim)
 for i in range(len(arrayPoint)):
-    ax.scatter(arrayPoint[i][0],arrayPoint[i][1],arrayPoint[i][2])
-    #https://likegeeks.com/3d-plotting-in-python/
+    ax.scatter(arrayPoint[i][0],arrayPoint[i][1],arrayPoint[i][2],c='black',marker='o')
+for i in range(len(result)):    
+    ax.scatter(result[i][0],result[i][1],result[i][2],c='red',marker='o')
 plt.show()

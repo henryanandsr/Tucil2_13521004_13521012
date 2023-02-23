@@ -6,18 +6,19 @@ from mpl_toolkits.mplot3d import Axes3D
 
 #Problem
 # 1. Pencarian antara dua sisi berbeda masih brute force
-# 2. Mencari jumlah titik ganjil masih error
 # 3. Menemukan titik
 # 4. Jumlah aksi yang dilakukan (ini bisa dilakuin klo udh bener di bagian nomer 1)
 # 5. Plotting (kurang kalau beda2 dimensi)
 # 6. Dimensi berbeda (sebenernya yang sekarang ini bisa cmn gabisa banyak2 karena brute force)
+# 7. Banyaknya fungsi dipanggil
+
 dimension = int(input("Dimensi: "))
 numberOfPoints = int(input("Banyaknya Titik: "))
 result=[[0 for j in range(dimension)] for i in range (2)]
 arrayPoint = [[0 for j in range(dimension)] for i in range (numberOfPoints)]
 for i in range(numberOfPoints):
     for j in range(dimension):
-        arrayPoint[i][j] = random.randint(0, 10)
+        arrayPoint[i][j] = random.randint(0, 100)
 
 # src.printAllPoint(arrayPoint)
 #yang bawah belum bener, baru basic

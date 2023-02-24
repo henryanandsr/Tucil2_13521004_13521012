@@ -4,35 +4,51 @@ import time
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
-# input dimensi
-dimension = int(input("Dimensi: "))
+#ASCII ART
+print("  ______   __                                            __            _______            __           ")
+print(" /      \ /  |                                          /  |          /       \          /  |          ")
+print("/$$$$$$  |$$ |  ______    _______   ______    _______  _$$ |_         $$$$$$$  | ______  $$/   ______  ")
+print("$$ |  $$/ $$ | /      \  /       | /      \  /       |/ $$   |        $$ |__$$ |/      \ /  | /      \ ")
+print("$$ |      $$ |/$$$$$$  |/$$$$$$$/ /$$$$$$  |/$$$$$$$/ $$$$$$/         $$    $$/ $$$$$$  |$$ |/$$$$$$  |")
+print("$$ |   __ $$ |$$ |  $$ |$$      \ $$    $$ |$$      \   $$ | __       $$$$$$$/  /    $$ |$$ |$$ |  $$/ ")
+print("$$ \__/  |$$ |$$ \__$$ | $$$$$$  |$$$$$$$$/  $$$$$$  |  $$ |/  |      $$ |     /$$$$$$$ |$$ |$$ |      ")
+print("$$    $$/ $$ |$$    $$/ /     $$/ $$       |/     $$/   $$  $$/       $$ |     $$    $$ |$$ |$$ |      ")
+print(" $$$$$$/  $$/  $$$$$$/  $$$$$$$/   $$$$$$$/ $$$$$$$/     $$$$/        $$/       $$$$$$$/ $$/ $$/       ")
+print("=======================================================================================================")
+print("                                     by 13521004 & 13521012                                            ")
+print("=======================================================================================================")
 
 # input banyaknya titik
-numberOfPoints = int(input("Banyaknya Titik: "))
+numberOfPoints = int(input("Masukkan banyak Titik (n): "))
+
+# input dimensi
+dimension = int(input("Masukkan Dimensi: "))
 
 # random int setiap elemen titik
 arrayPoint = [[0 for j in range(dimension)] for i in range (numberOfPoints)]
 for i in range(numberOfPoints):
     for j in range(dimension):
-        arrayPoint[i][j] = random.randint(0, 1000)
+        arrayPoint[i][j] = random.uniform(0, 1000)
 
 # sorting arrayPoint berdasarkan X membesar
 arrayPoint=src.sortArrOfPoint(arrayPoint)
 startTime1 = time.time()
 result = src.findClosestPairDnC(arrayPoint, numberOfPoints, dimension)
-print("")
-print("Jarak dengan DnC "+ "{:.2f}".format(round((src.findClosestPairDnC(arrayPoint, numberOfPoints, dimension)[0]),2)))
+print()
+print("============[DIVIDE AND CONQUER]============")
+print("Jarak dengan DnC "+ "{:.2f}".format(round((src.findClosestPairDnC(arrayPoint, numberOfPoints, dimension)[0]),2)) + " points")
 resTimeDnC=(time.time()-startTime1)*1000
 print("Waktu eksekusi DnC: " + "{:.2f}".format(round((resTimeDnC),2))+" ms")
 eucCountDnC = src.eucCount
 print("Euclidean Operation in DnC Count: "+str(eucCountDnC))
-print("")
+print()
+print("===============[BRUTE FORCE]===============")
 startTime2 = time.time()
-print("Jarak dengan BF : "+ "{:.2f}".format(round((src.findClosestPairBruteforce(arrayPoint)[0]),2)))
+print("Jarak dengan BF : "+ "{:.2f}".format(round((src.findClosestPairBruteforce(arrayPoint)[0]),2))+ " points")
 resTimeBF=(time.time()-startTime2)*1000
 print("Waktu eksekusi BF: " + "{:.2f}".format(round((resTimeBF),2))+" ms")
 eucCountBF = src.eucCount-eucCountDnC
-print("Euclidean Operation in BF Count: "+str(eucCountDnC))
+print("Euclidean Operation in BF Count: "+str(eucCountBF))
 print("")
 
 # visualisasi 
@@ -59,5 +75,5 @@ elif dimension==2:
         x.append(arrayPoint[i][0])
         y.append(arrayPoint[i][1])
     for xy in zip(x,y):
-        plt.annotate('(%.0f,%.0f)'% xy, xy = xy)
+        plt.annotate('(%.2f,%.2f)'% xy, xy = xy)
     plt.show()

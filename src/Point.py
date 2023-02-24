@@ -23,65 +23,7 @@ def findClosestPairBruteforce(arrayPoint):
                     temp=calculateDistance(arrayPoint[i], arrayPoint[j])
                     ret = [temp, arrayPoint[i],arrayPoint[j]]
     return ret
-def findClosestPairBF(arr,n,dimensi):
-    if (n==3):
-        d1 = calculateDistance(arr[0],arr[1])
-        d2 = calculateDistance(arr[0],arr[2])
-        d3 = calculateDistance(arr[1],arr[2])
-        if (d1>=d2 and d1>=d3):
-            ret = []
-            ret.append(d1)
-            ret.append(arr[0])
-            ret.append(arr[1])
-            return ret
-        elif (d2>=d1 and d2>=d3):
-            ret = []
-            ret.append(d2)
-            ret.append(arr[0])
-            ret.append(arr[2])
-            return ret
-        else:
-            ret = []
-            ret.append(d3)
-            ret.append(arr[1])
-            ret.append(arr[2])
-            return ret
-    elif (n==2):
-        d = calculateDistance(arr[0],arr[1])
-        ret = []
-        ret.append(d)
-        ret.append(arr[0])
-        ret.append(arr[1])
-        return ret
-    else:
-        mid = n//2
-        arr1 = arr[:mid]
-        arr2 = arr[mid:]
-        d1 = findClosestPairBF(arr1,mid,dimensi)
-        d2 = findClosestPairBF(arr2,mid,dimensi)
-        d = min(d1[0],d2[0])
-        if (d1[0]<d2[0]):
-            ret = d1
-        else:
-            ret = d2
-          #cari titik yang paling minimum yang dibedakan dari dua sisi
-        #sementara mari brute force dl ~
-        if(n>3):
-            minDistOp = calculateDistance(arr1[0],arr2[0])
-            ti = 0
-            tj = 0
-            for i in range (len(arr1)):
-                for j in range (len(arr2)):
-                    temp = calculateDistance(arr1[i],arr2[j])
-                    if (minDistOp>temp):
-                        minDistOp = temp
-                        ti = i
-                        tj = j
-            if (minDistOp<ret[0]):
-                ret = [minDistOp,arr1[ti],arr2[tj]]
-                return ret
-            else:
-                return ret
+
 def findClosestPairDnC(arr, n, dimensi):
     if (n==3):
         d1 = calculateDistance(arr[0],arr[1])
@@ -137,8 +79,8 @@ def findClosestPairDnC(arr, n, dimensi):
         for i in range(len(arr)):
             if arr[i][0]<=avg+d and arr[i][0]>=avg-d:
                 tempResult.append(arr[i])
-        print("Temporary result dg n " + str(n))
-        print(tempResult)
+        # print("Temporary result dg n " + str(n))
+        # print(tempResult)
         if (len(tempResult)>=2):
             temp=float(calculateDistance(tempResult[0],tempResult[1]))
             ti = 0

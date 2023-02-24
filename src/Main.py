@@ -4,44 +4,41 @@ import time
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
-#Problem
-# 1. Pencarian antara dua sisi berbeda masih brute force
-# 3. Menemukan titik
-# 4. Jumlah aksi yang dilakukan (ini bisa dilakuin klo udh bener di bagian nomer 1)
-# 5. Plotting (kurang kalau beda2 dimensi)
-# 6. Dimensi berbeda (sebenernya yang sekarang ini bisa cmn gabisa banyak2 karena brute force)
-# 7. Banyaknya fungsi dipanggil
-
+# input dimensi
 dimension = int(input("Dimensi: "))
+
+# input banyaknya titik
 numberOfPoints = int(input("Banyaknya Titik: "))
-# dimension = 2
-# numberOfPoints = 10
+
+# random int setiap elemen titik
 arrayPoint = [[0 for j in range(dimension)] for i in range (numberOfPoints)]
-# arrayPoint = [[1,2],[1,4],[1,1],[2,1],[7,3],[5,3],[2,4],[0,0],[9,5],[3,6]]
 for i in range(numberOfPoints):
     for j in range(dimension):
         arrayPoint[i][j] = random.randint(0, 1000)
 
+# sorting arrayPoint berdasarkan X membesar
 arrayPoint=src.sortArrOfPoint(arrayPoint)
-# src.printAllPoint(arrayPoint)
-# src.printAllPoint(arrayPoint)
-#yang bawah belum bener, baru basic
-
-#pecah ke dua bagian
-startTime = time.time()
+startTime1 = time.time()
 result = src.findClosestPairDnC(arrayPoint, numberOfPoints, dimension)
-# src.printAllPoint(result)
-# print(src.calculateDistance(src.findClosestPairDnC(arrayPoint, numberOfPoints, dimension)[1],src.findClosestPairDnC(arrayPoint, numberOfPoints, dimension)[2]))
-# print("Jarak "+str(src.findClosestPairDnC(arrayPoint, numberOfPoints, dimension)[0]))
-# print("Jarak dg BF : " + str(src.findClosestPairBF(arrayPoint,numberOfPoints,dimension)[0]))
-print("Jarak dg BF2 : " + str(src.findClosestPairBruteforce(arrayPoint)))
-# print("Titik dg BF : " + str(src.findClosestPairBF(arrayPoint,numberOfPoints,dimension)[1] + src.findClosestPairBF(arrayPoint,numberOfPoints,dimension)[2]))
-# print("Titik dg DNC : " + str(result[1]) + str(result[2]))
-# print("Waktu eksekusi : " + str(time.time()-startTime))
-print(src.eucCount)
+print("")
+print("Jarak dengan DnC "+ "{:.2f}".format(round((src.findClosestPairDnC(arrayPoint, numberOfPoints, dimension)[0]),2)))
+resTimeDnC=(time.time()-startTime1)*1000
+print("Waktu eksekusi DnC: " + "{:.2f}".format(round((resTimeDnC),2))+" ms")
+eucCountDnC = src.eucCount
+print("Euclidean Operation in DnC Count: "+str(eucCountDnC))
+print("")
+startTime2 = time.time()
+print("Jarak dengan BF : "+ "{:.2f}".format(round((src.findClosestPairBruteforce(arrayPoint)[0]),2)))
+resTimeBF=(time.time()-startTime2)*1000
+print("Waktu eksekusi BF: " + "{:.2f}".format(round((resTimeBF),2))+" ms")
+eucCountBF = src.eucCount-eucCountDnC
+print("Euclidean Operation in BF Count: "+str(eucCountDnC))
+print("")
 
-#visualisasi 
+# visualisasi 
 fig = plt.figure(figsize=(100,100))
+
+# dimensi 3
 if dimension==3:
     tempdim = str(dimension)+"d"
     ax = fig.add_subplot(111, projection=tempdim)
@@ -50,6 +47,7 @@ if dimension==3:
     for i in range(1,len(result)):    
         ax.scatter(result[i][0],result[i][1],result[i][2],c='red',marker='o')
     plt.show()
+# dimensi 2
 elif dimension==2:
     for i in range(len(arrayPoint)):
         plt.scatter(arrayPoint[i][0],arrayPoint[i][1],color = 'black')

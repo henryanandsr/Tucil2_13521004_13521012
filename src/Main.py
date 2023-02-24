@@ -1,4 +1,4 @@
-import src
+import Point as src
 import random
 import time
 import matplotlib.pyplot as plt
@@ -14,7 +14,10 @@ from mpl_toolkits.mplot3d import Axes3D
 
 dimension = int(input("Dimensi: "))
 numberOfPoints = int(input("Banyaknya Titik: "))
+# dimension = 2
+# numberOfPoints = 10
 arrayPoint = [[0 for j in range(dimension)] for i in range (numberOfPoints)]
+# arrayPoint = [[1,2],[1,4],[1,1],[2,1],[7,3],[5,3],[2,4],[0,0],[9,5],[3,6]]
 for i in range(numberOfPoints):
     for j in range(dimension):
         arrayPoint[i][j] = random.randint(0, 1000)
@@ -28,10 +31,14 @@ arrayPoint=src.sortArrOfPoint(arrayPoint)
 startTime = time.time()
 result = src.findClosestPairDnC(arrayPoint, numberOfPoints, dimension)
 # src.printAllPoint(result)
-print(src.calculateDistance(src.findClosestPairDnC(arrayPoint, numberOfPoints, dimension)[1],src.findClosestPairDnC(arrayPoint, numberOfPoints, dimension)[2]))
-print("Jarak "+str(src.findClosestPairDnC(arrayPoint, numberOfPoints, dimension)[0]))
-print("Jarak dg BF : " + str(src.findClosestPairBF(arrayPoint,numberOfPoints,dimension)))
-print("Waktu eksekusi : " + str(time.time()-startTime))
+# print(src.calculateDistance(src.findClosestPairDnC(arrayPoint, numberOfPoints, dimension)[1],src.findClosestPairDnC(arrayPoint, numberOfPoints, dimension)[2]))
+# print("Jarak "+str(src.findClosestPairDnC(arrayPoint, numberOfPoints, dimension)[0]))
+# print("Jarak dg BF : " + str(src.findClosestPairBF(arrayPoint,numberOfPoints,dimension)[0]))
+print("Jarak dg BF2 : " + str(src.findClosestPairBruteforce(arrayPoint)))
+# print("Titik dg BF : " + str(src.findClosestPairBF(arrayPoint,numberOfPoints,dimension)[1] + src.findClosestPairBF(arrayPoint,numberOfPoints,dimension)[2]))
+# print("Titik dg DNC : " + str(result[1]) + str(result[2]))
+# print("Waktu eksekusi : " + str(time.time()-startTime))
+print(src.eucCount)
 
 #visualisasi 
 fig = plt.figure(figsize=(100,100))
@@ -54,5 +61,5 @@ elif dimension==2:
         x.append(arrayPoint[i][0])
         y.append(arrayPoint[i][1])
     for xy in zip(x,y):
-        plt.annotate('(%.2f,%.2f)'% xy, xy = xy)
+        plt.annotate('(%.0f,%.0f)'% xy, xy = xy)
     plt.show()

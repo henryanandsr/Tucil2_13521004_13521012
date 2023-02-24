@@ -3,6 +3,7 @@ import random
 import time
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
+import platform
 
 #ASCII ART
 print("  ______   __                                            __            _______            __           ")
@@ -36,19 +37,21 @@ startTime1 = time.time()
 result = src.findClosestPairDnC(arrayPoint, numberOfPoints, dimension)
 print()
 print("============[DIVIDE AND CONQUER]============")
-print("Jarak dengan DnC "+ "{:.2f}".format(round((src.findClosestPairDnC(arrayPoint, numberOfPoints, dimension)[0]),2)) + " points")
+print("Distance With DnC Algorithm "+ "{:.2f}".format(round((src.findClosestPairDnC(arrayPoint, numberOfPoints, dimension)[0]),2)) + " points")
 resTimeDnC=(time.time()-startTime1)*1000
-print("Waktu eksekusi DnC: " + "{:.2f}".format(round((resTimeDnC),2))+" ms")
+print("Execution Time: " + "{:.2f}".format(round((resTimeDnC),2))+" ms")
 eucCountDnC = src.eucCount
 print("Euclidean Operation in DnC Count: "+str(eucCountDnC))
+print("Run in " + str(platform.processor()) + " processor")
 print()
 print("===============[BRUTE FORCE]===============")
 startTime2 = time.time()
-print("Jarak dengan BF : "+ "{:.2f}".format(round((src.findClosestPairBruteforce(arrayPoint)[0]),2))+ " points")
+print("Distance with BF Algorithm : "+ "{:.2f}".format(round((src.findClosestPairBruteforce(arrayPoint)[0]),2))+ " points")
 resTimeBF=(time.time()-startTime2)*1000
-print("Waktu eksekusi BF: " + "{:.2f}".format(round((resTimeBF),2))+" ms")
+print("Execution Time: " + "{:.2f}".format(round((resTimeBF),2))+" ms")
 eucCountBF = src.eucCount-eucCountDnC
 print("Euclidean Operation in BF Count: "+str(eucCountBF))
+print("Run in " + str(platform.processor()) + " processor")
 print("")
 
 # visualisasi 

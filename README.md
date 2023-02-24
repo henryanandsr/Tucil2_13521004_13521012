@@ -5,7 +5,7 @@ Mencari sepasang titik terdekat dengan Algoritma Divide and Conquer sudah dijela
 | NIM | Nama |
 | :---: | :---: |
 | 13521004 | Henry Anand Septian Radityo |
-| 13521012 | Haikal Ardzi Shofiyyurrohm |
+| 13521012 | Haikal Ardzi Shofiyyurrohman |
 ## Implementasi Algoritma Divide and Conquer
 Algoritma divide and conquer dilakukan untuk membagi permasalahan pencarian titik terdekat dengan membagi dua untuk titik - titik secara rekursif hingga mendapatkan titik yang berjumlah 2 atau 3. Titik yang berjumlah 2 atau 3 nantinya akan digunakan sebagai basis untuk menghitung jarak terpendek.
 ## Instalasi

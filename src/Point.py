@@ -1,6 +1,7 @@
 import math
 import sys
 eucCount = 0
+# calculateDistance between 2 point using euclidean
 def calculateDistance(point1, point2):
     global eucCount
     eucCount+=1
@@ -8,11 +9,12 @@ def calculateDistance(point1, point2):
     for i in range (len(point1)):
         result+=(point2[i]-point1[i])**2
     return math.sqrt(result)
-
+# print point in rows
 def printAllPoint(arrayPoint):
     for i in range(len(arrayPoint)):
         print(arrayPoint[i])
 
+# find closest pair in brute force algorithm
 def findClosestPairBruteforce(arrayPoint):
     temp=float(calculateDistance(arrayPoint[0], arrayPoint[1]))
     ret = [temp,arrayPoint[0],arrayPoint[1]]
@@ -24,6 +26,7 @@ def findClosestPairBruteforce(arrayPoint):
                     ret = [temp, arrayPoint[i],arrayPoint[j]]
     return ret
 
+# find closest pair in divide and conquer algorithm
 def findClosestPairDnC(arr, n, dimensi):
     if (n==3):
         d1 = calculateDistance(arr[0],arr[1])
@@ -56,11 +59,9 @@ def findClosestPairDnC(arr, n, dimensi):
         return ret
     else:
         mid = n//2
-        # print(mid)
         arr1 = arr[:mid]
-        # print(arr1)
         arr2 = arr[mid:]
-        # print(arr2)
+
         d1 = findClosestPairDnC(arr1,mid,dimensi)
         d2 = findClosestPairDnC(arr2,mid,dimensi)
         d = min(d1[0],d2[0])
@@ -69,8 +70,7 @@ def findClosestPairDnC(arr, n, dimensi):
         else:
             ret = d2
         tempResult=[]
-        #cari titik yang paling minimum yang dibedakan dari dua sisi
-        #sementara mari brute force dl ~
+
         if(n%2==0):
             avg=(arr[n//2][0]+arr[n//2+1][0])/2
         else:
@@ -79,8 +79,7 @@ def findClosestPairDnC(arr, n, dimensi):
         for i in range(len(arr)):
             if arr[i][0]<=avg+d and arr[i][0]>=avg-d:
                 tempResult.append(arr[i])
-        # print("Temporary result dg n " + str(n))
-        # print(tempResult)
+
         if (len(tempResult)>=2):
             temp=float(calculateDistance(tempResult[0],tempResult[1]))
             ti = 0
@@ -100,8 +99,8 @@ def findClosestPairDnC(arr, n, dimensi):
                 return ret
         else:
             return ret
-                        
-# def findClosestPairDnC
+
+# sorting point using X1 value ascending
 def sortArrOfPoint(arr):
     for i in range(len(arr)):
         tempx = arr[i][0]
@@ -113,6 +112,3 @@ def sortArrOfPoint(arr):
         arr[i] = arr[idxfound]
         arr[idxfound] = temp
     return arr
-
-# tempo = [[3,1],[4,1],[2,1],[0,1],[6,1],[-1,2],[2,1]]
-# print(sortArrOfPoint(tempo))

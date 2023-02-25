@@ -29,7 +29,7 @@ dimension = int(input("Masukkan Dimensi: "))
 arrayPoint = [[0 for j in range(dimension)] for i in range (numberOfPoints)]
 for i in range(numberOfPoints):
     for j in range(dimension):
-        arrayPoint[i][j] = round(random.uniform(0, 1000))
+        arrayPoint[i][j] = round(random.uniform(0, 1000),2)
 
 # sorting arrayPoint berdasarkan X membesar
 arrayPoint=src.sortArrOfPoint(arrayPoint)

@@ -16,8 +16,8 @@ python -m pip install -U pip
 python -m pip install -U matplotlib
 ```
 3. Lakukan clone pada repository dengan memasukkan kode berikut di terminal
-`git clone https://github.com/henryanandsr/Tucil2_Strategi-Algoritma/`
-4. Lakukan run dengan mengetikkan `py main.py` pada terminal yang sesuai dengan lokasi clone
+`git clone https://github.com/henryanandsr/Tucil2_13521004_13521012/`
+4. Lakukan run dengan mengetikkan `py src/Main.py` pada terminal yang sesuai dengan lokasi clone
 ## Struktur Program
 ```
 .
@@ -29,5 +29,5 @@ python -m pip install -U matplotlib
 └───src
         _pycache_
         Point.py
-        main.py
+        Main.py
 ```

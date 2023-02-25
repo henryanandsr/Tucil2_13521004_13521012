@@ -29,7 +29,7 @@ dimension = int(input("Masukkan Dimensi: "))
 arrayPoint = [[0 for j in range(dimension)] for i in range (numberOfPoints)]
 for i in range(numberOfPoints):
     for j in range(dimension):
-        arrayPoint[i][j] = random.uniform(0, 1000)
+        arrayPoint[i][j] = round(random.uniform(0, 1000))
 
 # sorting arrayPoint berdasarkan X membesar
 arrayPoint=src.sortArrOfPoint(arrayPoint)
@@ -37,6 +37,9 @@ startTime1 = time.time()
 result = src.findClosestPairDnC(arrayPoint, numberOfPoints, dimension)
 print()
 print("============[DIVIDE AND CONQUER]============")
+print("Pair of The Closest Points in DnC: ")
+print("Point : "+ str(result[1]))
+print("Point : "+ str(result[2]))
 print("Distance With DnC Algorithm "+ "{:.2f}".format(round((src.findClosestPairDnC(arrayPoint, numberOfPoints, dimension)[0]),2)) + " points")
 resTimeDnC=(time.time()-startTime1)*1000
 print("Execution Time: " + "{:.2f}".format(round((resTimeDnC),2))+" ms")
@@ -46,6 +49,9 @@ print("Run in " + str(platform.processor()) + " processor")
 print()
 print("===============[BRUTE FORCE]===============")
 startTime2 = time.time()
+print("Pair of The Closest Points in DnC: ")
+print("Point 1: "+ str(src.findClosestPairBruteforce(arrayPoint)[1]))
+print("Point 2: "+ str(src.findClosestPairBruteforce(arrayPoint)[2]))
 print("Distance with BF Algorithm : "+ "{:.2f}".format(round((src.findClosestPairBruteforce(arrayPoint)[0]),2))+ " points")
 resTimeBF=(time.time()-startTime2)*1000
 print("Execution Time: " + "{:.2f}".format(round((resTimeBF),2))+" ms")
